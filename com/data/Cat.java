@@ -1,14 +1,13 @@
 package com.data;
 
 public class Cat implements FelineInterface {
-    String name;
-    String race;
-    int year;
+    private String name;
+    private String race;
+    private int year;
 
-    public Cat(String race){
+    public Cat(String name, String race, int year){
+        this.name = name;
         this.race = race;
-    }
-    public Cat(int year){
         this.year = year;
     }
 
