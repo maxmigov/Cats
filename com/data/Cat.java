@@ -42,7 +42,6 @@ public class Cat implements FelineInterface {
         return 0;
     }
 
-    @Override
     public String toString() {
         return "Name" + name
                 + "Race" + race
