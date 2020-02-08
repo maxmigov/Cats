@@ -15,7 +15,7 @@ import javax.swing.BoxLayout;
 public class Application {
 
     private static List<String> catsNameList = new ArrayList<>();
-    private static List<String> heritages = new ArrayList<>();
+    private static List<FelineInterface> heritages = new ArrayList<>();
 
 
 
@@ -29,7 +29,7 @@ public class Application {
         JButton saveBtn = new JButton("SAVE");
         JTextField nameInput = new JTextField();
         JTextField raceInput = new JTextField();
-        JTextField yearInput = new JTextField();
+        JTextField yearInput = new JTextField();    
 
         JFrame window = new JFrame("Cat Database App");
         window.getContentPane().add(nameInput);
