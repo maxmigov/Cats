@@ -1,8 +1,7 @@
 package com.main;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
+import com.data.Cat;
+import com.data.FelineInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,63 +9,70 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
 
-@SuppressWarnings("all")
 public class Application {
 
-    private static List<String> catsNameList = new ArrayList<>();
-    private static List<FelineInterface> heritages = new ArrayList<>();
-
-
+    final static List<String> catNameList = new ArrayList<>();
+    final static ArrayList<FelineInterface> felineInterface = new ArrayList<>();
 
     public static void main(String[] args) {
-
-        initGui();
-
+        initGUI();
     }
 
-    public static void initGui() {
-        JButton saveBtn = new JButton("SAVE");
+    public static void initGUI() {
+
+        JButton saveBtn = new JButton("Save");
+
         JTextField nameInput = new JTextField();
         JTextField raceInput = new JTextField();
-        JTextField yearInput = new JTextField();    
+        JTextField yearInput = new JTextField();
 
         JFrame window = new JFrame("Cat Database App");
-        window.getContentPane().add(nameInput);
-        window.getContentPane().add(saveBtn);
 
-        window.getContentPane().setLayout(
-                new BoxLayout(window.getContentPane(),
-                        BoxLayout.PAGE_AXIS
-                ));
+        window.getContentPane().add(nameInput);
+        window.getContentPane().add(raceInput);
+        window.getContentPane().add(yearInput);
+        window.getContentPane().add(saveBtn);
+        window.getContentPane().setLayout(new BoxLayout(window.getContentPane(), BoxLayout.PAGE_AXIS));
+
         window.setBounds(100, 100, 400, 300);
+
         window.show();
 
-//OBSERVER - anonymous
-//IoC - Inversion of Control
         saveBtn.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    felineInterface.add(new Cat(nameInput.getText(), raceInput.getText(), Integer.parseInt(yearInput.getText())));
+                } catch (java.lang.NumberFormatException t) {
+                    System.out.println("Year can't be a word/symbol");
+                }
 
-//accumulate
-                catsNameList.add(nameInput.getText());
-                System.out.println( catsNameList.get(catsNameList.size() - 1) );
-                System.out.println("Cats in the collection " + catsNameList.size());
+                printCatList();
+
                 nameInput.setText("");
-                printList();
+                raceInput.setText("");
+                yearInput.setText("");
             }
-
-        } );
-
-
+        });
     }
+
     public static void printList() {
-        System.out.print("[" + catsNameList.size() + "]: ");
-/*for (int i = 0; i < catsNameList.size(); i++) {
-System.out.println(catsNameList.get(i) + ", ");
-}*/
-        System.out.println( String.join( "," , catsNameList) );
+        System.out.print("[" + catNameList.size() + "]:");
+        System.out.println(String.join(",", catNameList));
+    }
+
+    public static void printCatList() {
+        System.out.println("Cats amount: " + felineInterface.size());
+        for (FelineInterface f : felineInterface) {
+            System.out.println(f);
+        }
+        System.out.println();
+
     }
 
 }
