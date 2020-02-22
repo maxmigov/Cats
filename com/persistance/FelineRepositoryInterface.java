@@ -1,17 +1,23 @@
-package com.persistance;
+package persistance;
 
-import com.data.FelineInterface;
+import data.FelineInterface;
 
 import java.util.List;
 
 public interface FelineRepositoryInterface {
-    public boolean save(FelineInterface feline);
-    public boolean delete(FelineInterface feline);
-    public boolean update(FelineInterface feline); //Find and synchronize
-    public List<FelineInterface> findAll(); // Empty List
-    public FelineInterface findById(Integer id); // NULL
-    public FelineInterface findByName(String name); // NULL
-    public FelineInterface findByRace(String race);
+    boolean save(FelineInterface feline);
 
+    boolean delete(FelineInterface feline);
 
+    boolean update(FelineInterface feline); // Сначала находим этот объект, потом перезаписываем
+
+    List<FelineInterface> findAll() throws CloneNotSupportedException; // Будет возвращать Empty List, если объекта не найдено
+
+    FelineInterface findById(Integer id) throws CloneNotSupportedException; // Будет возвращать null, если объекта не найдено
+
+    List<FelineInterface> findByName(String name) throws CloneNotSupportedException;
+
+    List<FelineInterface> findByRace(String race) throws CloneNotSupportedException;
+    
+    
 }
