@@ -1,16 +1,22 @@
-package com.data;
+package data;
 
 public interface FelineInterface {
 
-    public void setName(String name);
-    public String getName();
+    void setName(String name);
 
-    public void setRace(String race);
-    public String getRace();
+    String getName();
 
-    public void setYear(int year);
-    public int getYear();
+    void setRace(String race);
 
-    public void setId(Integer id);
-    public Integer getId();
+    String getRace();
+
+    void setYear(int year);
+
+    int getYear();
+
+    void setId(Integer id);
+
+    Integer getId();
+    
+    FelineInterface clone() throws CloneNotSupportedException;
 }

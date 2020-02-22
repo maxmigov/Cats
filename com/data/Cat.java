@@ -1,40 +1,23 @@
-package com.data;
+package data;
 
-public class Cat implements FelineInterface {
-    String name;
-    String race;
-    int year;
-    Integer id;
+import java.io.*;
 
-    public Cat(String name, String race, int year, Integer id) {
+public class Cat implements FelineInterface, Cloneable {
+    private String name;
+    private String race;
+    private int year;
+    private Integer id;
+
+    public Cat(Integer id, String name, String race, int year) {
+        this.id = id;
         this.name = name;
         this.race = race;
         this.year = year;
-        this.id = id;
     }
-
-    public Cat(String name, String race, int year) {
-    }
-
 
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public String getRace() {
-        return race;
-    }
-
-    @Override
-    public int getYear() {
-        return year;
-    }
-
-    @Override
-    public Integer getId() {
-        return id;
     }
 
     @Override
@@ -43,8 +26,18 @@ public class Cat implements FelineInterface {
     }
 
     @Override
+    public String getRace() {
+        return race;
+    }
+
+    @Override
     public void setRace(String race) {
         this.race = race;
+    }
+
+    @Override
+    public int getYear() {
+        return year;
     }
 
     @Override
@@ -53,24 +46,28 @@ public class Cat implements FelineInterface {
     }
 
     @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public Object clone() throws CloneNotSupportedException {
-        FelineInterface feline = (FelineInterface) super.clone();
-        feline.setName(this.name);
-        feline.setRace(this.race);
-        feline.setYear(this.year);
-        return feline;
+// 1) FIX: SIMPLIFY
+    @Override
+    public FelineInterface clone() throws CloneNotSupportedException{
+        return (FelineInterface) super.clone();
     }
 
     @Override
     public String toString() {
-        return "Cat { " +
-                "name = '" + name + '\'' +
-                ", race = '" + race + '\'' +
-                ", year = " + year +
+        return "Cat{" +
+                "ID='" + id + '\'' +
+                "name='" + name + '\'' +
+                ", race='" + race + '\'' +
+                ", year=" + year +
                 '}';
     }
+
 }
